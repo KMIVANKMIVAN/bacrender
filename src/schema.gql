@@ -1,0 +1,238 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type TipoEmpresa {
+  id: ID!
+  tipo: String!
+  empresas: [Empresa!]!
+}
+
+type Empresa {
+  id: ID!
+  razon_social: String!
+  nit_empresa: String!
+  direccion_empresa: String!
+  pagina_web_empresa: String
+  telefono_empresa: String
+  linea_gratuita: String
+  celular_empresa: String
+  correo_empresa: String
+  tipo_empresa: TipoEmpresa!
+  usuarios: [Usuario!]!
+}
+
+type Sucursal {
+  id: ID!
+  sucursal: String!
+  usuarios: [Usuario!]!
+}
+
+type Usuario {
+  id: ID!
+  ap_paterno: String
+  ap_materno: String
+  ap_casado: String
+  nombres: String!
+  numero_carnet: String!
+  extesion: String!
+  correo: String!
+  password: String!
+  estado: Boolean!
+  celular: String
+  telefono: String
+  nit_usuario: String
+  direccion_usuario: String
+  pagina_web_usuario: String
+  rol: Rol!
+  sucursal: Sucursal!
+  empresa: Empresa!
+}
+
+type Rol {
+  id: ID!
+  rol: String!
+  tiporol: String!
+  usuarios: [Usuario!]!
+}
+
+type AuthResponse {
+  token: String!
+  usuario: Usuario!
+}
+
+type Query {
+  """Revalidar Token"""
+  RevalidarToken: AuthResponse!
+
+  """Muestra todos los Usuarios"""
+  MostrarUsuario: [Usuario!]!
+
+  """Busca y Muestra un Usuario"""
+  BuscarMostrarUsuario(id: ID!): Usuario!
+
+  """Busca y Muestra un Usuario por su Correo"""
+  MostrarUsuarioPorCorreo(correo: String!): Usuario!
+
+  """Muestra todas las Empresas"""
+  MostrarEmpresas: [Empresa!]!
+
+  """Busca y Muestra una Empresa"""
+  BuscarMostrarEmpresa(id: ID!): Empresa!
+
+  """Muestra todas las Tipo Empresas"""
+  MostrarTipoEmpresa: [TipoEmpresa!]!
+
+  """Busca y Muestra un Tipo Empresa"""
+  BuscarMostrarTipoEmpresa(id: ID!): TipoEmpresa!
+
+  """Muestra todos los Roles"""
+  MostrarRoles: [Rol!]!
+
+  """Busca y Muestra un Rol"""
+  BuscarMostrarRol(id: ID!): Rol!
+
+  """Muestra todas las Sucursales"""
+  MostrarSucursales: [Sucursal!]!
+
+  """Busca y Muestra una Sucursal"""
+  BuscarMostrarSucursal(id: ID!): Sucursal!
+}
+
+type Mutation {
+  """Para Iniciar Sesion"""
+  login(loginInput: LoginInput!): AuthResponse!
+
+  """Ejecuta la creacion de Usuario"""
+  CrearUsuario(createUsuarioInput: CreateUsuarioInput!): Usuario!
+
+  """Actualiza un Usuario"""
+  ActualizarUsuario(updateUsuarioInput: UpdateUsuarioInput!): Usuario!
+
+  """Ejecuta la creacion de Empresa"""
+  CrearEmpresa(createEmpresaInput: CreateEmpresaInput!): Empresa!
+
+  """Actualiza una Empresa"""
+  ActualizarEmpresa(updateEmpresaInput: UpdateEmpresaInput!): Empresa!
+
+  """Ejecuta la creacion de Tipos de Empresas"""
+  CrearTipoEmpresa(createTipoEmpresaInput: CreateTipoEmpresaInput!): TipoEmpresa!
+
+  """Actualiza un Tipo Empresa"""
+  ActualizarTipoEmpresa(updateTipoEmpresaInput: UpdateTipoEmpresaInput!): TipoEmpresa!
+
+  """Ejecuta la creacion de Rol"""
+  CrearRol(createRolInput: CreateRolInput!): Rol!
+
+  """Actualiza un Rol"""
+  ActualizarRol(updateRolInput: UpdateRolInput!): Rol!
+
+  """Ejecuta la creacion de Sucursal"""
+  CrearSucursal(createSucursalInput: CreateSucursalInput!): Sucursal!
+
+  """Actualiza una Sucursal"""
+  ActualizarSucursal(updateSucursalInput: UpdateSucursalInput!): Sucursal!
+
+  """Ejecuta la construcción de la base de datos"""
+  EjecutarSemilla: Boolean!
+}
+
+input LoginInput {
+  correo: String!
+  password: String!
+}
+
+input CreateUsuarioInput {
+  ap_paterno: String
+  ap_materno: String
+  ap_casado: String
+  nombres: String!
+  numero_carnet: String!
+  extesion: String!
+  correo: String!
+  password: String!
+  estado: Boolean!
+  celular: String
+  telefono: String
+  nit_usuario: String
+  direccion_usuario: String
+  pagina_web_usuario: String
+  rolId: Int!
+  sucursalId: Int!
+  empresasId: Int!
+}
+
+input UpdateUsuarioInput {
+  ap_paterno: String
+  ap_materno: String
+  ap_casado: String
+  nombres: String
+  numero_carnet: String
+  extesion: String
+  correo: String
+  password: String
+  estado: Boolean
+  celular: String
+  telefono: String
+  nit_usuario: String
+  direccion_usuario: String
+  pagina_web_usuario: String
+  rolId: Int
+  sucursalId: Int
+  empresasId: Int
+  id: Int!
+}
+
+input CreateEmpresaInput {
+  razon_social: String!
+  nit_empresa: String!
+  direccion_empresa: String!
+  pagina_web_empresa: String
+  telefono_empresa: String
+  linea_gratuita: String
+  celular_empresa: String
+  correo_empresa: String
+  tipo_empresas_id: Int!
+}
+
+input UpdateEmpresaInput {
+  razon_social: String
+  nit_empresa: String
+  direccion_empresa: String
+  pagina_web_empresa: String
+  telefono_empresa: String
+  linea_gratuita: String
+  celular_empresa: String
+  correo_empresa: String
+  tipo_empresas_id: Int
+  id: Int!
+}
+
+input CreateTipoEmpresaInput {
+  tipo: String!
+}
+
+input UpdateTipoEmpresaInput {
+  tipo: String
+  id: Int!
+}
+
+input CreateRolInput {
+  rol: String!
+  tiporol: String!
+}
+
+input UpdateRolInput {
+  rol: String
+  tiporol: String
+  id: Int!
+}
+
+input CreateSucursalInput {
+  sucursal: String!
+}
+
+input UpdateSucursalInput {
+  sucursal: String
+  id: Int!
+}
