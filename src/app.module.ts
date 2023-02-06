@@ -31,9 +31,9 @@ import { SeedModule } from './seed/seed.module';
       inject: [JwtService],
 
       useFactory: async (jwtService: JwtService) => ({
-        // playground: false,
+        playground: false,
         autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-        // plugins: [ApolloServerPluginLandingPageLocalDefault],
+        plugins: [ApolloServerPluginLandingPageLocalDefault],
         context({ req }) {
           /* const token = req.headers.authorization?.replace('Bearer ','');
           if ( !token ) throw Error('Token needed');

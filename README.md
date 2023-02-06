@@ -13,3 +13,6 @@ npm install
 npm run start:dev
 
 5 Ejecutar la "mutation" EjecutarSemilla
+
+bacrender
+BacCotizador
